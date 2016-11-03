@@ -1,12 +1,9 @@
-<?php
-date_default_timezone_set('PRC');
-?>
 <!DOCTYPE html>
 <html>
 <title>Encode Quality Results</title>
-<link rel="stylesheet" href="/intel/css/w3.css">
-<link rel="stylesheet" href="/intel/css/w3-theme-black.css">
-<link rel="stylesheet" href="/intel/css/font-awesome.min.css">
+<link rel="stylesheet" href="./w3.css">
+<link rel="stylesheet" href="./w3-theme-black.css">
+<link rel="stylesheet" href="./font-awesome.min.css">
 <body>
 
 <?php 
@@ -48,7 +45,7 @@ date_default_timezone_set('PRC');
 <h2>Encode Quality Results</h2>
 
 <?php
-	$con = mysqli_connect("localhost", "root", "08293028") or die ('Could not connect: ' . mysqli_error());
+	$con = mysqli_connect("localhost", "root", "vera15") or die ('Could not connect: ' . mysqli_error());
 	$db_selected = mysqli_select_db($con, "media") or die ('Could not select database');
 	foreach ((array)$inputmachinearray as $mvalue) {
 		echo "<h3>$mvalue</h3>"; 
@@ -59,10 +56,9 @@ date_default_timezone_set('PRC');
 				$idsql="SELECT * from build_driver where machine_name='$mvalue' and date_time='$datevalue'";
 				$idresult=mysqli_query($con, $idsql);
 				while($line=mysqli_fetch_array($idresult)){
-					//$outid=$line['id'];
-					$datevaluex=$datevalue." 00:00:00";
+					$outid=$line['id'];
 					$machinecnum=$line['commit_num'];
-					$outputsql="SELECT * FROM encode_quality_tab WHERE machine_name='$mvalue' and date_time='$datevaluex' and rc_mode='$inputrc_mode' and frame_mode='$inputframe' and resolution_h='$inputresolution'";
+					$outputsql="SELECT * FROM encode_quality_tab WHERE driver_id='$outid' and rc_mode='$inputrc_mode' and frame_mode='$inputframe' and resolution_h='$inputresolution'";
 					$outputresult=mysqli_query($con, $outputsql);
 					//$bitratearray=array();
 					if($outputline=mysqli_fetch_array($outputresult)) {?>
@@ -72,10 +68,9 @@ date_default_timezone_set('PRC');
 							</tr>
 				      		<tr class='w3-theme-dark'>
 						        <?php echo "<th>$datevalue</th>"; ?>
-						        <?php echo "<th>Output Bitrate</th>"; ?>
+						        <?php echo "<th>output bitrate</th>"; ?>
 						        <?php echo "<th>YPSNR</th>"; ?>
-						        <?php echo "<th>Bitrate Range</th>"; ?>
-						        <?php echo "<th>Peak Bitrate</th>"; ?>
+						        <?php echo "<th>RATE</th>"; ?>
 						    </tr>
 		    			</thead>
 		    			<tr>
@@ -85,12 +80,9 @@ date_default_timezone_set('PRC');
 								$temp=$outputline['bitrate_output'];
 							    echo "<td>$temp</td>";  
 								$temp=$outputline['y_psnr'];
-							    echo "<td>$temp</td>";
-							    if($inputrc_mode=='CQP') echo "<td>N/A</td>";
-							    else{  
+							    echo "<td>$temp</td>";  
 								$temp=($outputline['bitrate_output']-$outputline['qp_bitrate'])/$outputline['qp_bitrate'];
-							    echo "<td>$temp</td>";} 
-							    echo "<td></td>"; 
+							    echo "<td>$temp</td>"; 
 							}?>
 						</tr>
 	<?php				}
@@ -103,11 +95,8 @@ date_default_timezone_set('PRC');
 							    echo "<td>$temp</td>";  
 								$temp=$outputline['y_psnr'];
 							    echo "<td>$temp</td>";  
-								if($inputrc_mode=='CQP') echo "<td>N/A</td>";
-							    else{  
 								$temp=($outputline['bitrate_output']-$outputline['qp_bitrate'])/$outputline['qp_bitrate'];
-							    echo "<td>$temp</td>";} 
-							    echo "<td></td>"; ?>
+							    echo "<td>$temp</td>"; ?>
 							</tr>
 	<?php					}
 					} 
@@ -122,10 +111,9 @@ date_default_timezone_set('PRC');
 			$idresult=mysqli_query($con, $idsql);
 			$plotdata1=array();
 			if($line=mysqli_fetch_array($idresult)){
-				//$outid=$line['id'];
-				$inputstartdatex=$inputstartdate." 00:00:00";
+				$outid=$line['id'];
 				$machinecnum=$line['commit_num'];
-				$outputsql="SELECT * FROM encode_quality_tab WHERE machine_name='$mvalue' and date_time='$inputstartdatex' and rc_mode='$inputrc_mode' and frame_mode='$inputframe' and resolution_h='$inputresolution'";
+				$outputsql="SELECT * FROM encode_quality_tab WHERE driver_id='$outid' and rc_mode='$inputrc_mode' and frame_mode='$inputframe' and resolution_h='$inputresolution'";
 				$outputresult=mysqli_query($con, $outputsql);
 				while($outputline=mysqli_fetch_array($outputresult)){
 					if(strpos($outputline['testsuites'], $inputdec_mode)){
@@ -139,10 +127,9 @@ date_default_timezone_set('PRC');
 			$idresult=mysqli_query($con, $idsql);
 			$plotdata2=array();
 			if($line=mysqli_fetch_array($idresult)){
-				//$outid=$line['id'];
-				$inputenddatex=$inputenddate." 00:00:00";
+				$outid=$line['id'];
 				$machinecnum=$line['commit_num'];
-				$outputsql="SELECT * FROM encode_quality_tab WHERE machine_name='$mvalue' and date_time='$inputenddatex' and rc_mode='$inputrc_mode' and frame_mode='$inputframe' and resolution_h='$inputresolution'";
+				$outputsql="SELECT * FROM encode_quality_tab WHERE driver_id='$outid' and rc_mode='$inputrc_mode' and frame_mode='$inputframe' and resolution_h='$inputresolution'";
 				$outputresult=mysqli_query($con, $outputsql);
 				while($outputline=mysqli_fetch_array($outputresult)){
 					if(strpos($outputline['testsuites'], $inputdec_mode)){
