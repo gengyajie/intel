@@ -4,8 +4,8 @@ date_default_timezone_set('PRC');
 <!DOCTYPE html>
 <html>
 <title>Feature Decode Results</title>
-<link rel="stylesheet" href="/intel/css/w3.css">
-<link rel="stylesheet" href="/intel/css/w3-theme-black.css">
+<link rel="stylesheet" href="/media_driver/css/w3.css">
+<link rel="stylesheet" href="/media_driver/css/w3-theme-black.css">
 <body>
 
 <?php 
@@ -31,8 +31,8 @@ date_default_timezone_set('PRC');
 <h2>Feature Decode Results</h2>
 
 <?php
-	$con = mysqli_connect("localhost", "root", "08293028") or die ('Could not connect: ' . mysqli_error());
-	$db_selected = mysqli_select_db($con, "media") or die ('Could not select database');
+	$con = mysqli_connect("ocl", "mmm", "123456") or die ('Could not connect: ' . mysqli_error());
+	$db_selected = mysqli_select_db($con, "sjtu") or die ('Could not select database');
 	foreach ((array)$inputmachinearray as $mvalue) {
 		echo "<h3>$mvalue</h3>";?>
 		<div style="overflow-x: auto; overflow-y: hidden;scrollbar-face-color:#B3DDF7;">

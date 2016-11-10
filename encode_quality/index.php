@@ -8,9 +8,9 @@ date_default_timezone_set('PRC');
 ?>
 <title>Encode Quality</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/intel/css/w3.css">
-<link rel="stylesheet" href="/intel/css/w3-theme-black.css">
-<link rel="stylesheet" href="/intel/css/font-awesome.min.css">
+<link rel="stylesheet" href="/media_driver/css/w3.css">
+<link rel="stylesheet" href="/media_driver/css/w3-theme-black.css">
+<link rel="stylesheet" href="/media_driver/css/font-awesome.min.css">
 <head>
 <style>
 .center {
@@ -35,15 +35,15 @@ date_default_timezone_set('PRC');
   <li class="w3-dropdown-hover">
     NAVIGATION
     <div class="w3-dropdown-content w3-card-4">
-      <a class="w3-padding-16" href="/intel">HOME</a>
-      <a class="w3-padding-16" href="/intel/encode_quality">Encode Quality</a>
-      <a class="w3-padding-16" href="/intel/feature_encode">Feature Encode</a>
-      <a class="w3-padding-16" href="/intel/feature_decode">Feature Decode</a>
-      <a class="w3-padding-16" href="/intel/performance">Performance</a>
+      <a class="w3-padding-16" href="/media_driver">HOME</a>
+      <a class="w3-padding-16" href="/media_driver/encode_quality">Encode Quality</a>
+      <a class="w3-padding-16" href="/media_driver/feature_encode">Feature Encode</a>
+      <a class="w3-padding-16" href="/media_driver/feature_decode">Feature Decode</a>
+      <a class="w3-padding-16" href="/media_driver/performance">Performance</a>
     </div>
   </li>
   <div class="w3-center">
-  <h1 class="w3-xxxlarge w3-animate-bottom">Meida Driver Web Portal: Encode Quality</h1>
+  <h1 class="w3-xxxlarge w3-animate-bottom">Media Driver Web Portal: Encode Quality</h1>
   </div>
 </header>
 
@@ -54,8 +54,8 @@ date_default_timezone_set('PRC');
 	<div class="center">
  	<?php
 
-$con = mysqli_connect("localhost", "root", "08293028");
-$db_selected = mysqli_select_db($con, "media");
+$con = mysqli_connect("ocl", "mmm", "123456");
+$db_selected = mysqli_select_db($con, "sjtu");
 $msql = "SELECT DISTINCT machine_name from build_driver";
 $ssql = "SELECT DISTINCT testsuites from encode_quality_tab";
 $mresult = mysqli_query($con, $msql);
@@ -175,7 +175,7 @@ while($line=mysqli_fetch_array($sresult)){
   </div>
 </div>
 
-<div class="w3-center">
+<div class="w3-padding-top w3-center">
       <button class="w3-btn w3-xxlarge w3-dark" style="font-weight:500;">Submit</button>
 </div>
 </div>

@@ -3,7 +3,9 @@
 	   'decode_mode' => [
 			'hevc',
 			'avc',
-			'mpeg2'
+			'mpeg2',
+			'vp9',
+			'vp8'
 	   ],
 	   'resolution' => [
 	   		'480p',
