@@ -17,7 +17,7 @@
 
 <header class="w3-container w3-theme w3-padding" id="myHeader">
   	<div class="w3-center">
-  	<h1 class="w3-xxxlarge w3-animate-bottom">Media Test Web Portal</h1>
+  	<h1 class="w3-xxxlarge w3-animate-bottom">Media Driver Test Web Portal</h1>
   	</div>
 </header>
 

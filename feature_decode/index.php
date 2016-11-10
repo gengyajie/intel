@@ -21,8 +21,18 @@ date_default_timezone_set('PRC');
 <form action="decoderesult.php" method=GET>
 <!-- Header -->
 <header class="w3-container w3-theme w3-padding" id="myHeader">
+  <li class="w3-dropdown-hover">
+    NAVIGATION
+    <div class="w3-dropdown-content w3-card-4">
+      <a class="w3-padding-16" href="/intel">HOME</a>
+      <a class="w3-padding-16" href="/intel/encode_quality">Encode Quality</a>
+      <a class="w3-padding-16" href="/intel/feature_encode">Feature Encode</a>
+      <a class="w3-padding-16" href="/intel/feature_decode">Feature Decode</a>
+      <a class="w3-padding-16" href="/intel/performance">Performance</a>
+    </div>
+  </li>
   <div class="w3-center">
-  <h1 class="w3-xxxlarge w3-animate-bottom">Meida Driver Web Portal: Encode Quality</h1>
+  <h1 class="w3-xxxlarge w3-animate-bottom">Meida Driver Web Portal: Feature Decode</h1>
   </div>
 </header>
 
@@ -65,7 +75,7 @@ while($line=mysqli_fetch_array($sresult)){
     <?php
       //$suites=array("encode_hevc_cqp","OpenCL_utests","OpenCL_misc","OpenCL_piglit","OpenCV_test","OpenCL_conformance_1_2");
       foreach ($suites as $activesuitname) {
-      echo "<p><input id=$activesuitname name=suitearray[] value=$activesuitname class=w3-check type=checkbox><label class=w3-validate>$activesuitname</label></p>";
+      echo "<input id=$activesuitname name=suitearray[] value=$activesuitname class=w3-check type=checkbox><label class=w3-validate>$activesuitname</label><br>";
       }
 mysqli_close($con);
 		?>
@@ -101,7 +111,7 @@ mysqli_close($con);
   </div>
 </div>
 
-<div class="w3-padding-32 w3-center">
+<div class="w3-center">
       <button class="w3-btn w3-xxlarge w3-dark" style="font-weight:500;">Submit</button>
 </div>
 </div>

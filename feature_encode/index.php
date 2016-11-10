@@ -41,7 +41,7 @@ date_default_timezone_set('PRC');
 
 <div class="w3-row-padding w3-margin-top">
 <div class="w3-third">
-  <div class="w3-card-2 w3-padding-top" style="min-height:460px">
+  <div class="w3-card-2 w3-padding-top" style="height:460px">
   <div class="w3-center"><h4>Machine</h4></div>
 	<div class="center">
  	<?php
@@ -49,7 +49,7 @@ date_default_timezone_set('PRC');
 $con = mysqli_connect("localhost", "root", "08293028");
 $db_selected = mysqli_select_db($con, "media");
 $msql = "SELECT DISTINCT machine_name from build_driver";
-$ssql = "SELECT DISTINCT testsuites from encode_quality_tab";
+$ssql = "SELECT DISTINCT testsuites from feature_encode_tab";
 $mresult = mysqli_query($con, $msql);
 $sresult = mysqli_query($con, $ssql);
 
@@ -72,77 +72,22 @@ while($line=mysqli_fetch_array($sresult)){
 </div>
 
 <div class="w3-third">
-	<div class="w3-card-2 w3-padding-top" style="min-height:460px">
+	<div class="w3-card-2 w3-padding-top" style="height: 460px; overflow: auto;">
 	<div class="w3-center"><h4>Suite</h4></div>
 	<div class="center">
 	    <?php
 			//$suites=array("encode_hevc_cqp","OpenCL_utests","OpenCL_misc","OpenCL_piglit","OpenCV_test","OpenCL_conformance_1_2");
-			//foreach ($suites as $activesuitname) {
-			//echo "<p><input id=$activesuitname name=suitearray[] value=$activesuitname class=w3-check type=checkbox><label class=w3-validate>$activesuitname</label></p>";
-			//}
+			foreach ($suites as $activesuitname) {
+			echo "<input id=$activesuitname name=suitearray[] value=$activesuitname class=w3-check type=checkbox><label class=w3-validate>$activesuitname</label><br>";
+			}
 			mysqli_close($con);
 		?>
 	</div>
-   <table class="center">
-      <tr>
-        <td><label for="dec_mode">Decode Mode</label></td>
-        <td>
-          <select id="dec_mode" name="dec_mode">
-            <option></option>
-            <?php
-              foreach ($configure['decode_mode'] as $value) {
-                echo "<option value=$value>$value</option>";
-              }
-            ?>
-          </select>
-        </td>
-      </tr>
-      <tr></tr>
-      <tr>
-        <td><label for="resolution">Resolution</label></td>
-        <td>
-          <select id="resolution" name="resolution">
-            <option></option>
-            <?php
-              foreach ($configure['resolution'] as $value) {
-                echo "<option value=$value>$value</option>";
-              }
-            ?>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td><label for="frame">Frame</label></td>
-        <td>
-          <select id="frame" name="frame">
-            <option></option>
-            <?php
-              foreach ($configure['frame'] as $value) {
-                echo "<option value=$value>$value</option>";
-              }
-            ?>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td><label for="rc_mode">RC Mode</label></td>
-        <td>
-          <select id="rc_mode" name="rc_mode">
-            <option></option>
-            <?php
-              foreach ($configure['rc_mode'] as $value) {
-                echo "<option value=$value>$value</option>";
-              }
-            ?>
-          </select>
-        </td>
-      </tr>
-    </table>
 	</div>  
 </div>
 
 <div class="w3-third">
-  <div class="w3-card-2 w3-padding-top" style="min-height:460px">
+  <div class="w3-card-2 w3-padding-top" style="height: 460px">
   <div class="w3-center"><h4>Date</h4></div>
 	<div class="center">
       <p>Please input the date in format: Year-Month-Day</p>
@@ -167,7 +112,7 @@ while($line=mysqli_fetch_array($sresult)){
   </div>
 </div>
 
-<div class="w3-center">
+<div class="w3-padding-top w3-center">
       <button class="w3-btn w3-xxlarge w3-dark" style="font-weight:500;">Submit</button>
 </div>
 </div>
