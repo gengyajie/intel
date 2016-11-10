@@ -21,7 +21,7 @@ date_default_timezone_set('PRC');
 </head>
 <body>
 
-<form action="result.php" method=GET>
+<form action="encoderesult.php" method=GET>
 <!-- Header -->
 <header class="w3-container w3-theme w3-padding" id="myHeader">
   <li class="w3-dropdown-hover">
