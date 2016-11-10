@@ -3,9 +3,6 @@ date_default_timezone_set('PRC');
 ?>
 <!DOCTYPE html>
 <html>
-<?php
-  $configure = include('config.php');
-?>
 <title>Performance</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/media_driver/css/w3.css">
