@@ -3,6 +3,15 @@ date_default_timezone_set('PRC');
 ?>
 <!DOCTYPE html>
 <html>
+
+<script language="JavaScript">
+  function selectAll(source) {
+    checkboxes = document.getElementsByName('machinearray[]');
+    for(var i in checkboxes)
+      checkboxes[i].checked = source.checked;
+  }
+</script>
+
 <?php
   $configure = include('config.php');
 ?>
@@ -20,14 +29,6 @@ date_default_timezone_set('PRC');
 </style>
 </head>
 <body>
-
-<!-- <ul class="w3-navbar w3-theme"> -->
-  <!-- <li><a class="w3-padding-16" href="/intel/encode_quality">Encode Quality</a></li>
-  <li><a class="w3-padding-16" href="/intel/feature_encode">Feature Encode</a></li>
-  <li><a class="w3-padding-16" href="/intel/encode_decode">Encode Decode</a></li>
-  <li><a class="w3-padding-16" href="/intel/performance">Performance</a></li> -->
-  
-<!-- </ul> -->
 
 <form action="qualityresult.php" method=GET>
 <!-- Header -->
@@ -54,26 +55,26 @@ date_default_timezone_set('PRC');
 	<div class="center">
  	<?php
 
-$con = mysqli_connect("ocl", "mmm", "123456");
-$db_selected = mysqli_select_db($con, "sjtu");
-$msql = "SELECT DISTINCT machine_name from build_driver";
-$ssql = "SELECT DISTINCT testsuites from encode_quality_tab";
-$mresult = mysqli_query($con, $msql);
-$sresult = mysqli_query($con, $ssql);
+    $con = mysqli_connect("ocl", "mmm", "123456");
+    $db_selected = mysqli_select_db($con, "sjtu");
+    $msql = "SELECT DISTINCT machine_name from build_driver";
+    $ssql = "SELECT DISTINCT testsuites from encode_quality_tab";
+    $mresult = mysqli_query($con, $msql);
+    $sresult = mysqli_query($con, $ssql);
 
-$machine=array();
-$suites=array();
-while($line=mysqli_fetch_array($mresult)){
-   array_push($machine, $line['machine_name']);
-}
-while($line=mysqli_fetch_array($sresult)){
-   array_push($suites, $line['testsuites']);
-}
+    $machine=array();
+    $suites=array();
+    while($line=mysqli_fetch_array($mresult)){
+       array_push($machine, $line['machine_name']);
+    }
+    while($line=mysqli_fetch_array($sresult)){
+       array_push($suites, $line['testsuites']);
+    }
 
-	   //$machine=array("x-bxtcl1_unstable","x-sklcl1_unstable","x-bswcl1_unstable","x-bdwcl1_unstable","x-hswcl1_unstable","xbytcl1_unstable","x-ivbcl2_unstable","x-e3cl1_unstable");
-		 foreach ($machine as $activemachinename) {
-			echo "<p><input id=$activemachinename name=machinearray[] value=$activemachinename class=w3-check type=checkbox><label class=w3-validate>$activemachinename</label></p>";
-		  }
+    echo "<input id=selectall onClick=selectAll(this) class=w3-check type=checkbox><label class=w3-validate>Select All</lable></br>";
+    foreach ($machine as $activemachinename) {
+    echo "<input id=$activemachinename name=machinearray[] value=$activemachinename class=w3-check type=checkbox><label class=w3-validate>$activemachinename</label></br>";
+    }
   ?>
   </div>
   </div>
@@ -84,10 +85,6 @@ while($line=mysqli_fetch_array($sresult)){
 	<div class="w3-center"><h4>Suite</h4></div>
 	<div class="center">
 	    <?php
-			//$suites=array("encode_hevc_cqp","OpenCL_utests","OpenCL_misc","OpenCL_piglit","OpenCV_test","OpenCL_conformance_1_2");
-			//foreach ($suites as $activesuitname) {
-			//echo "<p><input id=$activesuitname name=suitearray[] value=$activesuitname class=w3-check type=checkbox><label class=w3-validate>$activesuitname</label></p>";
-			//}
 			mysqli_close($con);
 		?>
 	</div>

@@ -48,8 +48,8 @@ date_default_timezone_set('PRC');
 <h2>Encode Quality Results</h2>
 
 <?php
-	$con = mysqli_connect("ocl", "mmm", "123456") or die ('Could not connect: ' . mysqli_error());
-	$db_selected = mysqli_select_db($con, "sjtu") or die ('Could not select database');
+	$con = mysqli_connect("localhost", "root", "08293028") or die ('Could not connect: ' . mysqli_error());
+	$db_selected = mysqli_select_db($con, "media") or die ('Could not select database');
 	foreach ((array)$inputmachinearray as $mvalue) {
 		echo "<h3>$mvalue</h3>"; 
 		if($modeflag==2){?>
